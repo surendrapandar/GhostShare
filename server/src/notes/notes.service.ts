@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { NotesModel } from './notes.model';
+import { v4 as uuid } from 'uuid';
 
 @Injectable()
 export class NotesService {
@@ -19,7 +20,7 @@ export class NotesService {
   async create(note: NotesModel) {
     return this.notesModel.create({
       content: note.content,
-      accessKey: note.accessKey,
+      accessKey: uuid(),
     });
   }
 

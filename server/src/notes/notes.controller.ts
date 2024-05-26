@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { NotesService } from './notes.service';
 import { NotesCreationAttributes } from './notes.model';
 
@@ -6,13 +6,15 @@ import { NotesCreationAttributes } from './notes.model';
 export class NotesController {
   constructor(private NotesService: NotesService) {}
 
-  @Get()
-  findByKey(@Body() note: NotesCreationAttributes) {
-    return this.NotesService.findById(note.accessKey);
+  @Get(':accessKey')
+  findByKey(@Param('accessKey') accessKey: string) {
+    console.log(accessKey);
+    return this.NotesService.findById(accessKey);
   }
 
   @Post()
   createNote(@Body() note: any) {
-    return this.NotesService.create(note.notes);
+    console.log(note);
+    return this.NotesService.create(note);
   }
 }
