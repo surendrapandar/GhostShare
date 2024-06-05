@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { NotesModel } from 'src/notes/notes.model';
+// import { NotesModel } from 'src/notes/notes.model';
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import { NotesModel } from 'src/notes/notes.model';
       username: 'postgres',
       password: 'postgres',
       database: 'postgres',
-      models: [NotesModel],
+      models: [],
       autoLoadModels: true,
       sync: {
         alter: true,

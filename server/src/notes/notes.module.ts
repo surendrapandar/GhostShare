@@ -1,13 +1,12 @@
 import { Module } from '@nestjs/common';
-import { SequelizeModule } from '@nestjs/sequelize';
-import { NotesModel } from './notes.model';
 import { NotesController } from './notes.controller';
 import { NotesService } from './notes.service';
+import { FirebaseService } from 'src/firebase/firebase.service';
 
 @Module({
-  imports: [SequelizeModule.forFeature([NotesModel])],
+  imports: [],
   controllers: [NotesController],
-  providers: [NotesService, NotesModel],
+  providers: [NotesService, FirebaseService],
   exports: [],
 })
 export class NotesModule {}

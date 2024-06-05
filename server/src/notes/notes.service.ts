@@ -1,30 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { NotesModel } from './notes.model';
-import { v4 as uuid } from 'uuid';
+import { FirebaseService } from '../firebase/firebase.service';
+import { Notes } from './notes.model';
 
 @Injectable()
 export class NotesService {
-  constructor(
-    @InjectModel(NotesModel) private readonly notesModel: typeof NotesModel,
-  ) {}
+  constructor(private readonly firebaseService: FirebaseService) {}
 
-  async findById(accessKey: string) {
-    return this.notesModel.findOne({
-      where: {
-        accessKey: accessKey,
-      },
-    });
+  async findByRoom(room: number, password: string) {
+    console.log(room, password);
+    const data = await this.firebaseService.readData(room, password);
+    console.log(data);
+    return data;
   }
 
-  async create(note: NotesModel) {
-    return this.notesModel.create({
-      content: note.content,
-      accessKey: uuid(),
+  async create(data: Notes) {
+    await this.firebaseService.writeData({
+      content: data.content,
+      roomNo: data.room,
+      password: data.password,
     });
-  }
-
-  async findOne(id: number) {
-    return this.notesModel.findOne({ where: { id } });
   }
 }
