@@ -7,13 +7,17 @@ export class NotesController {
   constructor(private NotesService: NotesService) {}
 
   @Get('')
-  findAll(@Query('room') room: string, @Query('password') password: string) {
-    const roomNumber = parseInt(room, 10);
+  findAll(
+    @Query('roomNo') roomNo: string,
+    @Query('password') password: string,
+  ) {
+    const roomNumber = parseInt(roomNo, 10);
     return this.NotesService.findByRoom(roomNumber, password);
   }
 
   @Post('/create')
   create(@Body() data: Notes) {
+    console.log(data);
     return this.NotesService.create(data);
   }
 }

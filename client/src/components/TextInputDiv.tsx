@@ -2,26 +2,26 @@ import React from "react";
 import { Button } from "./ui/button";
 import { saveNoteApi } from "../api/notes/notes.api";
 import { toast } from "sonner";
+import { Input } from "./ui/input";
 
 const NoteEditor: React.FC = () => {
   const [note, setNote] = React.useState<string>("");
-  const [accessKey, setAccessKey] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+  const [roomNo, setRoomNo] = React.useState<string>("");
 
   const handleSaveButtonClick = async () => {
-    const res = await saveNoteApi({ content: note });
-    setAccessKey(res.accessKey);
+    console.log(note, password, roomNo);
+    const noteInfo = {
+      content: note,
+      password: password,
+      roomNo: roomNo,
+    };
+    await saveNoteApi(noteInfo);
     toast.success("Note saved successfully");
   };
 
-  const handleShareButtonClick = () => {
-    navigator.clipboard.writeText(
-      `${window.location.origin}/notes/${accessKey}`
-    );
-    toast.info("Note link copied to clipboard");
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4 ">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
         <h1 className="text-2xl font-bold mb-4 text-gray-800">
           Write Your Note
@@ -32,18 +32,27 @@ const NoteEditor: React.FC = () => {
           value={note}
           onChange={(e) => setNote(e.target.value)}
         ></textarea>
-        <div className="mt-4 space-x-3">
+        <div className="mt-5">
+          <div className="mt-5 mb-5">
+            <Input
+              className="mb-5"
+              type="number"
+              placeholder="Write Your Room No."
+              value={roomNo}
+              onChange={(e) => setRoomNo(e.target.value)}
+            />
+            <Input
+              type="password"
+              placeholder="Write Your Room Password."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
           <Button
             className=" bg-purple-600 hover:bg-purple-700 min-w-20"
             onClick={() => handleSaveButtonClick()}
           >
             Save
-          </Button>
-          <Button
-            className=" bg-purple-600 hover:bg-purple-700 min-w-20"
-            onClick={() => handleShareButtonClick()}
-          >
-            Share Note
           </Button>
         </div>
       </div>

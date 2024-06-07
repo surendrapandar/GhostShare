@@ -1,5 +1,5 @@
 export interface Notes {
-  room: number;
+  roomNo: string;
   content: string;
   password?: string;
 }

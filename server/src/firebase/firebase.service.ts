@@ -19,7 +19,6 @@ export class FirebaseService {
   private readonly db: Firestore;
 
   constructor(private readonly configService: ConfigService) {
-    console.log(this.configService.get<string>('FIREBASE_API_KEY'));
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: this.configService.get<string>('FIREBASE_API_KEY'),
@@ -40,12 +39,14 @@ export class FirebaseService {
 
   // Function to read data from Firestore
   async readData(room: number, password: string): Promise<DocumentData[]> {
+    console.log(room, password);
+    console.log(typeof room, typeof password);
     const document = [];
     try {
       const q = query(
         collection(this.db, 'Notes'),
-        where('room', '==', room),
-        where('password', '==', password),
+        where('roomNo', '==', 100),
+        where('password', '==', '333'),
       );
       const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
       querySnapshot.forEach((doc) => {
