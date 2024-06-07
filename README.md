@@ -1,9 +1,27 @@
-## Overview
+## Introduction
 
-Welcome to GhostNote, an application designed to let you share notes anonymously. Whether you want to share a secret, express an opinion, or just jot down a thought without revealing your identity, GhostNote is here to help you do it easily and securely.
+GhostShare is a simple solution for sharing information between different devices without the hassle of signing into email or messaging apps to share anything. It allows you to create secret rooms with passwords where you can store your information and access them later from any computer using the room number and password. GhostShare ensures ease of use, safety, and privacy for your information.
 
-You just need to share a link and no will be able to track who is owner of the note.
+## How it Works
 
-### Coming Soon
+1. Create a Secret Room: Start by creating a secret room with a password.
+2. Store Your information: Put your information in the secret room.
+3. Access Anywhere: Retrieve your information later from any computer using the room number and password.
+4. Enjoy 🍾🍾.
 
-Soon releasing the concept of room so you don't even need to share the link
+## Features
+
+- **Secure Sharing**: Share information securely without the need for email or messaging apps.
+- **Password Protection**: Each secret room is protected with a password for added security.
+- **Ease of Use**: Simple and intuitive interface for creating and accessing secret rooms.
+- **Privacy**: Keep your information private and accessible only to those with the room number and password.
+
+## Getting Started
+
+**Visit the Website: Go to GhostShare website.**
+
+1. Create a Secret Room: Click on the "Create Room" button and enter a password for your secret room.
+2. Store Your information: Add your information or information to the secret room.
+3. Access Anywhere: To access your information later, visit the website again and enter the room number and password.
+
+Note: This is still in producation so make sure not share anything crucial
