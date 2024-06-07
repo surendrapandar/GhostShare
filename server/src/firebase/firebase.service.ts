@@ -45,8 +45,8 @@ export class FirebaseService {
     try {
       const q = query(
         collection(this.db, 'Notes'),
-        where('roomNo', '==', 100),
-        where('password', '==', '333'),
+        where('roomNo', '==', room),
+        where('password', '==', password),
       );
       const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
       querySnapshot.forEach((doc) => {
