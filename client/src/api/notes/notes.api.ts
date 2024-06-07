@@ -27,7 +27,9 @@ export const saveNoteApi = async (noteInfo: Note) => {
 export const fetchNoteApi = async (roomNo: string, password: string) => {
   try {
     const response = await fetch(
-      `http://localhost:3000/notes/?roomNo=${roomNo}&password=${password}`
+      `${
+        import.meta.env.VITE_NOTE_BACKEND_API_URL
+      }/?roomNo=${roomNo}&password=${password}`
     );
     const data = await response.json();
     console.log(data);
