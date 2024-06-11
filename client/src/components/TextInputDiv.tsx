@@ -27,16 +27,19 @@ const NoteEditor: React.FC = () => {
     };
     try {
       const res = await saveNoteApi(noteInfo);
-      if (res.status === 200) {
-        toast.success("Note saved successfully");
+      console.log(res.statusCode === 200);
+      if (res.statusCode === 200) {
+        toast.success("Room saved successfully");
         setNote("");
         setPassword("");
         setRoomNo("");
+      } else if (res.statusCode == 400) {
+        toast.info("Room already exists, please try another room number.");
       } else {
-        toast.error("Failed to save note");
+        toast.error("Failed to save room");
       }
     } catch (error) {
-      toast.error("Failed to save note");
+      toast.error("Faild to save room");
     } finally {
       setLoading(false);
     }

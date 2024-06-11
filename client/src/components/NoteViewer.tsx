@@ -2,6 +2,7 @@ import { fetchNoteApi } from "@/api/notes/notes.api";
 import React from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { toast } from "sonner";
 
 const NoteViewer: React.FC = () => {
   const [content, setContent] = React.useState<string>("");
@@ -10,7 +11,12 @@ const NoteViewer: React.FC = () => {
 
   const handleFindNote = async () => {
     const data = await fetchNoteApi(roomNo, password);
-    setContent(data[0].content);
+    console.log(data.roomData.content);
+    if (data.statusCode === 200) {
+      setContent(data.roomData.content);
+    } else {
+      toast.error("No room found with the given credentials.");
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-800 text-white p-4">
@@ -35,13 +41,14 @@ const NoteViewer: React.FC = () => {
           <div className="mt-5 flex flex-col">
             <div className="mt-5 mb-5">
               <Input
-                className="mb-5"
+                className="mb-5 text-black"
                 type="number"
                 placeholder="Write Your Room No."
                 value={roomNo}
                 onChange={(e) => setRoomNo(e.target.value)}
               />
               <Input
+                className=" text-black"
                 type="password"
                 placeholder="Write Your Room Password."
                 value={password}

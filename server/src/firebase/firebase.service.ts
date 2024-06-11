@@ -37,6 +37,25 @@ export class FirebaseService {
     this.db = getFirestore(app);
   }
 
+  // Function to check if room exists in Firestore
+  async checkRoomExists(room: number): Promise<boolean> {
+    let exists = false;
+    try {
+      const q = query(
+        collection(this.db, 'Notes'),
+        where('roomNo', '==', room),
+      );
+      const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, '=>', doc.data());
+        exists = true;
+      });
+    } catch (error) {
+      console.error('No room no exits: ', error);
+    }
+    return exists;
+  }
+
   // Function to read data from Firestore
   async readData(room: number, password: string): Promise<DocumentData[]> {
     console.log(room, password);
