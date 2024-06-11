@@ -40,7 +40,7 @@ function NavBar() {
               {Buttons.map(([text, path]) => (
                 <Button
                   key={text}
-                  className="block mt-4 lg:inline-block lg:mt-0 bg-purple-600 hover:bg-purple-700 ml-4"
+                  className="block mt-4 lg:inline-block lg:mt-0 bg-red-600 hover:bg-red-700 ml-4"
                 >
                   <Link to={path} target={text == "💡Feedback" ? "_blank" : ""}>
                     {text}

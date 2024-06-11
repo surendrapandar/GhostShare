@@ -13,10 +13,10 @@ const NoteViewer: React.FC = () => {
     setContent(data[0].content);
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 p-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-800 text-white p-4">
       <div className="max-w w-full m-12 space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold">
             Find Your Shared Notes
           </h2>
           {content && (
@@ -49,7 +49,7 @@ const NoteViewer: React.FC = () => {
               />
             </div>
             <Button
-              className=" bg-purple-600 hover:bg-purple-700 min-w-20"
+              className=" bg-red-600 hover:bg-red-700 min-w-20"
               onClick={handleFindNote}
             >
               Find Note
